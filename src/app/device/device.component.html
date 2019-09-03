@@ -1,0 +1,33 @@
+<li [ngClass]="{'list-group-item': true ,
+                'list-group-item-warning':deviceStatus === 'On',
+                'list-group-item-danger': deviceStatus === 'Off'}">
+                <!-- (click) = "onTurn()" -->
+  <!--<div
+    style="width: 10px;height: 10px;background-color: #ff1811;"
+    *ngIf="deviceStatus === 'Off'"></div>
+  <div
+    style="width: 10px;height: 10px;background-color: #faa206;"
+    *ngIf="deviceStatus === 'On'"></div>-->
+  <!-- String interpolation -->
+  <h4 [ngStyle]="{color: getColorText()}">Device : {{deviceName}} -- Statut : {{deviceStatus}}</h4>
+  <!--<input type="text" class="form-control" [(ngModel)]="deviceName">-->
+  <button class="btn"
+          *ngIf="deviceStatus === 'Off'"
+          (click)="onTurnOn()"
+          [disabled]="deviceStatus === 'On'">Turn on</button>
+  <button class="btn"
+          *ngIf="deviceStatus === 'On'"
+          (click)="onTurnOff()"
+          [disabled]="deviceStatus === 'Off'">Turn off</button>
+</li>
+
+<!--bouton toogle-->
+<!--<<button class="btn btn success"
+          *ngIf="statBol === false"
+          [disabled]="!isAuthdev"
+          (click)="onTurnOn()">Turn {{deviceName}} on</button>
+  <button class="btn btn success"
+          *ngIf="statBol === true"
+          [disabled]="!isAuthdev"
+          (click)="onTurnOff()">Turn {{deviceName}} off</button>
+-->
