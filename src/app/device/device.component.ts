@@ -10,6 +10,7 @@ export class DeviceComponent implements OnInit {
   @Input() deviceName: string;
   @Input() deviceStatus: string;
   @Input() IndexOfDevice: number;
+  @Input() id: number;
   isAuthdev = false;
   constructor(private deviceService: DeviceService) {
     setTimeout(

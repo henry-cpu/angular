@@ -9,7 +9,9 @@
     style="width: 10px;height: 10px;background-color: #faa206;"
     *ngIf="deviceStatus === 'On'"></div>-->
   <!-- String interpolation -->
-  <h4 [ngStyle]="{color: getColorText()}">Device : {{deviceName}} -- Statut : {{deviceStatus}}</h4>
+  <h4 [ngStyle]="{color: getColorText()}"
+      [routerLink]="[id]">Device : {{deviceName}} -- Statut : {{deviceStatus}}</h4>
+
   <!--<input type="text" class="form-control" [(ngModel)]="deviceName">-->
   <button class="btn"
           *ngIf="deviceStatus === 'Off'"
@@ -19,6 +21,7 @@
           *ngIf="deviceStatus === 'On'"
           (click)="onTurnOff()"
           [disabled]="deviceStatus === 'Off'">Turn off</button>
+  <!-- <a [routerLink]="[id]">Info</a> -->
 </li>
 
 <!--bouton toogle-->

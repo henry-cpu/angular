@@ -5,7 +5,8 @@
     <app-device *ngFor="let device of devices; let i = index"
                 [deviceName]="device.name"
                 [deviceStatus]="device.status"
-                [IndexOfDevice]="i">
+                [IndexOfDevice]="i"
+                [id] = "device.id">
     </app-device>
 
   </ul>
