@@ -1,5 +1,8 @@
+import { Subject } from 'rxjs';
+
 export class DeviceService {
-  devices = [
+  deviceSubject = new Subject<any[]>();
+  private devices = [
     {
       id: 1,
       name: 'Television',
@@ -14,9 +17,21 @@ export class DeviceService {
       id: 3,
       name: 'Light',
       status: 'On'
+    },
+    {
+      id: 1,
+      name: 'Toaster',
+      status: 'Off'
+    },
+    {
+      id: 5,
+      name: 'Camera',
+      status: 'On'
     }
   ];
-
+  emitDeviceSubject() {
+    this.deviceSubject.next(this.devices.slice());
+  }
   getDeviceById(id: number) {
     const device = this.devices.find(
       (deviceObject) => {
@@ -38,11 +53,14 @@ export class DeviceService {
     for (let count = 0; count < this.devices.length; count++) {
       this.devices[count].status = 'Off';
     }
+    this.emitDeviceSubject();
   }
   switchOnOne(index: number) {
     this.devices[index].status = 'On';
+    this.emitDeviceSubject();
   }
   switchOffOne(index: number) {
     this.devices[index].status = 'Off';
+    this.emitDeviceSubject();
   }
 }
