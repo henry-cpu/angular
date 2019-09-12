@@ -22,14 +22,10 @@ export class DeviceService {
       id: 1,
       name: 'Toaster',
       status: 'Off'
-    },
-    {
-      id: 5,
-      name: 'Camera',
-      status: 'On'
     }
   ];
   emitDeviceSubject() {
+    //slice = copie de l'arret device
     this.deviceSubject.next(this.devices.slice());
   }
   getDeviceById(id: number) {
@@ -63,4 +59,20 @@ export class DeviceService {
     this.devices[index].status = 'Off';
     this.emitDeviceSubject();
   }
+  addDevice(name: string, status: string) {
+    const deviceOject = {
+      id: 0,
+      name: '',
+      status: ''
+    };
+
+    const position = this.devices[this.devices.length - 1].id;
+    deviceOject.name = name;
+    deviceOject.status = status;
+    deviceOject.id = position + 1;
+
+    this.devices.push(deviceOject);
+    this.emitDeviceSubject();
+  }
 }
+
