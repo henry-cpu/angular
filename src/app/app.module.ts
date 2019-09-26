@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'devices/:id', canActivate: [AuthGuard], component: SingleDeviceComponent},
   { path: 'edit', canActivate: [AuthGuard], component: EditDeviceComponent },
   { path: 'users', component: UserListComponent},
+  { path: 'newUser', component: NewUserComponent},
   { path: 'auth',  component: AuthComponent},
   { path: '', canActivate: [AuthGuard], component: ResumeComponent},
   { path: 'not-found', component: FourOhFourComponent },
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

@@ -3,7 +3,7 @@
   <h2>Users List</h2>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let user of users" >
-      <h3 class="dd">{{ user.firstname }} {{ user.lastname }}</h3>
+      <h3 class="dd">{{ user.firstName }} {{ user.lastName }}</h3>
       <ul class="dd">
         <li class="dd">{{ user.email }}</li>
         <li class="dd">This person drink better {{ user.drinkPreference }}</li>
@@ -14,4 +14,5 @@
       </ul>
     </li>
   </ul>
+  <a routerLink="/newUser">New User</a>
 </div>

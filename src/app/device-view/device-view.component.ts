@@ -50,6 +50,12 @@ export class DeviceViewComponent implements OnInit {
     }*/
     this.deviceservice.switchOffAll();
   }
+  onSave() {
+    this.deviceservice.saveDevicesToServer();
+  }
+  onFetch() {
+    this.deviceservice.getDevicesFromServer();
+  }
 
 }
 // bouton toogle

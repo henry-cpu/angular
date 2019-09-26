@@ -10,6 +10,14 @@
   background-color: #F79F1F;
   border-color: #F79F1F;
 }
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-success:focus {
+  background-color: #22a6b3;
+  border-color: #22a6b3;
+}
 
 li {
   list-style-type: none;

@@ -1,5 +1,8 @@
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class DeviceService {
   deviceSubject = new Subject<any[]>();
   private devices = [
@@ -7,23 +10,10 @@ export class DeviceService {
       id: 1,
       name: 'Television',
       status: 'On'
-    },
-    {
-      id: 2,
-      name: 'Coffee Maschine',
-      status: 'Off'
-    },
-    {
-      id: 3,
-      name: 'Light',
-      status: 'On'
-    },
-    {
-      id: 1,
-      name: 'Toaster',
-      status: 'Off'
     }
   ];
+
+  constructor(private  httpClient: HttpClient) {}
   emitDeviceSubject() {
     //slice = copie de l'arret device
     this.deviceSubject.next(this.devices.slice());
@@ -73,6 +63,34 @@ export class DeviceService {
 
     this.devices.push(deviceOject);
     this.emitDeviceSubject();
+  }
+  saveDevicesToServer() {
+    //post instead put allows to create a several identical devices in the database, witch is not recommended
+    this.httpClient
+      .put('https://http-client-demo-42839.firebaseio.com/devices.json', this.devices)
+      .subscribe(
+        () => {
+          console.log('Save completed !');
+        },
+        (error) => {
+          console.log('Error detected by saving ! ' + error);
+        }
+      );
+  }
+  getDevicesFromServer() {
+    this.httpClient
+      .get<any[]>('https://http-client-demo-42839.firebaseio.com/devices.json')
+      .subscribe(
+        (response) => {
+          this.devices = response;
+          console.log('everything was good downloaded !');
+          this.emitDeviceSubject();
+        },
+        (error) => {
+          console.log('error by downloading !' + error);
+        }
+
+      );
   }
 }
 

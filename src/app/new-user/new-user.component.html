@@ -2,25 +2,32 @@
   <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
     <div class="form-group">
       <label for="firstName">Firstname</label>
-      <input type="test" class="form-control" id="firstName" formControl = "firstName">
+      <input type="test" class="form-control" id="firstName" formControlName="firstName">
     </div>
     <div class="form-group">
       <label for="lastName">Lastname</label>
-      <input type="test" class="form-control" id="lastName" formControl = "lastName">
+      <input type="test" class="form-control" id="lastName" formControlName="lastName">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="test" class="form-control" id="email" formControl = "email">
+      <input type="test" class="form-control" id="email" formControlName= "email">
     </div>
     <div class="form-group">
       <label for="drinkPreference">What is your drink preference?</label>
-      <select class="form-control" id="drinkPreference" formControl = "drinkPreference">
+      <select class="form-control" id="drinkPreference" formControlName = "drinkPreference">
         <option value="Water">Water</option>
         <option value="Cola">Cola</option>
         <option value="Jack Daniel">Jack Daniel</option>
         <option value="Coffee">Coffee</option>
       </select>
     </div>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <div formArrayName="hobbies">
+      <h3>Your Hobbies :</h3>
+      <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+        <input type="text" class="form-control" [formControlName]="i">
+      </div>
+      <button type="button" class="btn btn-success" (click)="onAddHobby()">Add a hobby</button>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Save</button>
   </form>
 </div>

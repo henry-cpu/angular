@@ -1,11 +1,12 @@
-import {User} from '../models/Users.model';
+
 import {Subject} from 'rxjs';
+import {User} from '../models/Users.model';
 
 export class UserService {
   private user: User[] = [
     {
-      firstname: 'Henry',
-      lastname: 'Ndefo',
+      firstName: 'Henry',
+      lastName: 'Ndefo',
       email: 'henryndefo@gmail.com',
       drinkPreference: 'water',
       hobbies: [
